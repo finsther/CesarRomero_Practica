@@ -3,27 +3,24 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { OrganizationController } from './organization/organization.controller';
-import { OrganizationService } from './organization/organization.service';
-import { URL } from "url";
-
-const dbUrl = new URL(process.env.DATABASE_URL);
-const routingId = dbUrl.searchParams.get("options");
-dbUrl.searchParams.delete("options");
+import { OrganizationModule } from './modules/organization/organization.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: "cockroachdb",
-      url: dbUrl.toString(),
+      url: process.env.DATABASE_URL,
       ssl: true,
       extra: {
-        options: routingId
+          options: "--cluster=redleg-dragon-3491"
       },
-    })
+      autoLoadEntities: true,
+      synchronize: false
+    }),
+    OrganizationModule
   ],
-  controllers: [AppController, OrganizationController],
-  providers: [AppService, OrganizationService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }
