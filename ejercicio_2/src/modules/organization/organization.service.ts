@@ -36,13 +36,13 @@ export class OrganizationService {
     return this.repository.findOneBy({ id: id })
   }
 
-  async remove(id: number): Promise<string> {
+  async remove(id: number): Promise<Organization[]> {
     const orgExist = await this.repository.findOneBy({ id: id });
 
     if (!orgExist) throw new NotFoundException('No existe esa organizacion con el ID: ' + id);
 
     await this.repository.delete({ id: id });
 
-    return "organizacion eliminada"
+    return this.repository.find();
   }
 }
