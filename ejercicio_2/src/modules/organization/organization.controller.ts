@@ -16,22 +16,22 @@ export class OrganizationController {
   }
 
   @Get()
-  findAll() {
-    return this.organizationService.findAll();
+  getAll() {
+    return this.organizationService.getAll();
   }
 
-  @Get(':name')
-  findOne(@Param('name') name: string) {
-    return this.organizationService.findOne(name);
+  @Get(':id')
+  findByID(@Param('id') id: number) {
+    return this.organizationService.findByID(id);
   }
 
-  @Patch(':name')
-  update(@Param('name',) name: string, @Body() updateOrganizationDto: UpdateOrganizationDto) {
-    return this.organizationService.update(name, updateOrganizationDto);
+  @Patch(':id')
+  update(@Param('id',) id: number, @Body() updateOrganizationDto: UpdateOrganizationDto) {
+    return this.organizationService.update(id, updateOrganizationDto);
   }
 
-  @Delete(':name')
-  remove(@Param('name') name: string) {
-    return this.organizationService.remove(name);
+  @Delete(':id')
+  remove(@Param('id') id: number) {
+    return this.organizationService.remove(id);
   }
 }

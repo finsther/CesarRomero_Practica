@@ -7,7 +7,7 @@ import { OrganizationModule } from './modules/organization/organization.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: "cockroachdb",
       url: process.env.DATABASE_URL,
@@ -16,7 +16,7 @@ import { OrganizationModule } from './modules/organization/organization.module';
           options: "--cluster=redleg-dragon-3491"
       },
       autoLoadEntities: true,
-      synchronize: false
+      synchronize: false,
     }),
     OrganizationModule
   ],
