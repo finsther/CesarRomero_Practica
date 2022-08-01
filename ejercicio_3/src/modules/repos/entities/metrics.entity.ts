@@ -19,6 +19,9 @@ export class Metric {
     @Column({ nullable: false })
     public hotspot: number;
 
+    @Column({ nullable: false, name: "code_smells" })
+    public codeSmells: number;
+
     @OneToOne(() => Repozitory)
     @JoinColumn({ name: 'id_repository' })
     repository: Repozitory;

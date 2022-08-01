@@ -8,7 +8,9 @@ import { Tribe } from './entities/tribe.entity';
 import { Organization } from './entities/organization.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Repozitory, Metric, Tribe, Organization])],
+  imports: [
+    TypeOrmModule.forFeature([Repozitory, Metric, Tribe, Organization]),
+  ],
   controllers: [RepoController],
   providers: [RepoService]
 })

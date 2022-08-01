@@ -1,5 +1,7 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -17,7 +19,6 @@ import { RepoModule } from './modules/repos/repo.module';
       },
       autoLoadEntities: true,
       synchronize: false,
-      logging: true,
     }),
     RepoModule],
   controllers: [AppController],
